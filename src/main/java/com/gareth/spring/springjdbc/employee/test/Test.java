@@ -23,8 +23,8 @@ public class Test {
 		//invoked the create method by passing it the employee
 		//object, instead of passing values
 		//int result = dao.create(employee);
-		
-		int result = dao.update(employee);
+		//int result = dao.update(employee);
+		int result = dao.delete(10);
 		System.out.println("Number of records are: " +result);
 	}
 }
