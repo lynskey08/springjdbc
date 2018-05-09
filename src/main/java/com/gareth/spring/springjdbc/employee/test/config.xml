@@ -9,24 +9,24 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns="http://www.springframework.org/schema/beans">
 
+	<context:component-scan
+		base-package="com.gareth.spring.springjdbc.employee.dao.impl" />
+
 	<!-- DataSource Bean(4 properties) - the bean that creates the connection -->
-	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+	<bean
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
 		name="dataSource" p:driverClassName="org.postgresql.Driver"
 		p:url="jdbc:postgresql://localhost:5432/mydb" p:username="bob"
 		p:password="password" />
-	
-	<!-- JDBC Template Bean - uses the dataSource to create a connection,
-	     create a statement and executing the statement -->
-	<bean class="org.springframework.jdbc.core.JdbcTemplate" name="jdbcTemplate"
-	p:dataSource-ref="dataSource"/>
 
-	<!-- EmployeeDaoImpl bean - injects jdcbTemplate into EmployeeDaoImpl -->
-	<bean class="com.gareth.spring.springjdbc.employee.dao.impl.EmployeeDaoImpl"
-	name="employeeDao">
-		<property name="jdbcTemplate">
-			<ref bean="jdbcTemplate"/>
-		</property>
-	</bean>
+	<!-- JDBC Template Bean - uses the dataSource to create a connection, create 
+		a statement and executing the statement -->
+	<bean class="org.springframework.jdbc.core.JdbcTemplate"
+		name="jdbcTemplate" p:dataSource-ref="dataSource" />
+
+	<!-- EmployeeDaoImpl bean - injects jdcbTemplate into EmployeeDaoImpl <bean 
+		class="com.gareth.spring.springjdbc.employee.dao.impl.EmployeeDaoImpl" name="employeeDao"> 
+		<property name="jdbcTemplate"> <ref bean="jdbcTemplate"/> </property> </bean> -->
 
 
 </beans>
